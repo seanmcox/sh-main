@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="jar" name="Super Helpful Quiz">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+
+	<tstamp>
+	     <format property="version" pattern="yyyy.MM.dd"/>
+	</tstamp>
+
+	<target name="clean">
+    	<delete dir="../install/felix-cache"></delete>
+    </target>
+
+	<target name="jar">
+        <jar destfile="../install/sh_quiz.jar">
+            <manifest>
+                <attribute name="Main-Class" value="com.shtick.apps.sh.Main"/>
+                <attribute name="Class-Path" value=". lib/org.apache.felix.main-5.6.10.jar"/>
+            </manifest>
+            <fileset dir="../../bin"/>
+        </jar>
+    </target>
+
+    <target name="test_run" depends="clean,jar">
+    	<echo message="Performing test run."></echo>
+        <java jar="../install/sh_quiz.jar" dir="../install" fork="true"></java>
+    	<echo message="Finished"></echo>
+    </target>
+	
+    <target name="create_deliverable" depends="clean,jar">
+    	<echo message="Creating Delivery Package"></echo>
+		<delete file="../install/LICENSE"/>
+		<copy todir="../install" file="../../LICENSE"/>
+		<zip destfile="../sh.quiz.${version}.zip" basedir="../install"/>
+    </target>
+</project>
