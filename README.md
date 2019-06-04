@@ -7,7 +7,7 @@ This is an Eclipse project. This is also the main project for the Super Helpful 
 
 * `sh-main`
 * `sh-core`
-* `sh-implementation-sqlite`
+* `sh-driver-sqlite`
 * `sh-ui`
 
 Additional projects named with the prefix `sh-qagen-` define the question and answer generators that actually create the quiz questions.
